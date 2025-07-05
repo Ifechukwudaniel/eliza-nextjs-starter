@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 import { Dialog } from "@/components/dialog";
 import { DiscordIcon, XIcon } from "@/components/assets";
-import { Logo } from "@/components/logo";
+import { Logo } from "@/components/assets/ElizaLogo";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
