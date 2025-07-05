@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
-import { SquarePenIcon, PanelLeftIcon } from "lucide-react";
+import { SquarePenIcon, PanelLeftIcon, PanelRightIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { LandingChatSessions } from "@/components/landing-chat-sessions";
+import { ElizaLogo } from "@/components/assets";
 
 const AppSidebar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -15,16 +15,27 @@ const AppSidebar = () => {
 
   return (
     <div
-      className={`flex flex-col h-full border-r border-[#ffffff20] bg-muted transition-all duration-300 overflow-hidden overflow-y-auto z-40 pl-1 bg-black ${
+      className={`flex flex-col h-full border-r border-[#ffffff20] bg-muted transition-all duration-300 overflow-hidden z-40 pl-1 bg-black ${
         isExpanded ? "w-80" : "w-15"
       }`}
     >
-      <div className="p-2 flex justify-end">
+      <div className="p-2 flex justify-between">
         <Button
           className="border-zinc-950/10 h-9 border bg-transparent"
           onClick={() => setIsExpanded(!isExpanded)}
           outline
         >
+          {!isExpanded ? (
+            <PanelRightIcon className="h-4 w-4" />
+          ) : (
+            <ElizaLogo className="h-4 w-4" />
+          )}
+        </Button>
+        <Button
+          className="border-zinc-950/10 h-9 border bg-transparent"
+          onClick={() => setIsExpanded(!isExpanded)}
+          outline
+        > 
           <PanelLeftIcon className="h-4 w-4" />
         </Button>
       </div>
