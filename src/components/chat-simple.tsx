@@ -19,6 +19,7 @@ import {
   getRoomMemories,
   pingServer,
 } from "@/lib/api-client";
+import { DebugPanel } from "./eliza/DebugPanel";
 
 // Simple spinner component
 const LoadingSpinner = () => (
@@ -638,7 +639,7 @@ export const Chat = ({ sessionId: propSessionId }: ChatProps = {}) => {
   }
 
   return (
-    <div className="min-h-screen w-full max-w-4xl mx-auto flex flex-col mt-20">
+    <div className="min-h-screen w-full max-w-4xl mx-auto flex flex-col mt-20 pb-24">
       {/* Header Section - Top/Middle */}
       <div className="flex-1 flex flex-col px-4 pb-32">
         <div className="mb-8">
@@ -741,17 +742,17 @@ export const Chat = ({ sessionId: propSessionId }: ChatProps = {}) => {
 
       {/* Debug Info (Only when NEXT_PUBLIC_DEBUG is enabled) */}
       {process.env.NEXT_PUBLIC_DEBUG === "true" && (
-        <div className="mt-4 p-2 bg-gray-100 rounded text-xs text-gray-600">
-          <div>Agent ID: {agentId}</div>
-          <div>Session ID: {sessionId}</div>
-          <div>Channel ID: {channelId}</div>
-          <div>User Entity: {userEntity}</div>
-          <div>Connection: {connectionStatus}</div>
-          <div>Server: {serverStatus}</div>
-          <div>Agent Status: {agentStatus}</div>
-          <div>Input Disabled: {inputDisabled ? "true" : "false"}</div>
-          <div>Agent Thinking: {isAgentThinking ? "true" : "false"}</div>
-        </div>
+        <DebugPanel
+          agentId={agentId}
+          sessionId={sessionId}
+          channelId={channelId}
+          userEntity={userEntity}
+          connectionStatus={connectionStatus}
+          serverStatus={serverStatus}
+          agentStatus={agentStatus}
+          inputDisabled={inputDisabled}
+          isAgentThinking={isAgentThinking}
+        />
       )}
     </div>
   );

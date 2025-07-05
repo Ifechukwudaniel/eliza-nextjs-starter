@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { LandingChatSessions } from "@/components/landing-chat-sessions";
 
 const AppSidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const router = useRouter();
 
   return (
