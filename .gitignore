@@ -61,3 +61,6 @@ cache/
 ./models/
 elizaos/
 package-lock.json
+./.eliza/*
+
+.eliza

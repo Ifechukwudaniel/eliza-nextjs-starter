@@ -7,7 +7,7 @@ interface LogoProps {
   className?: string;
 }
 
-export function Logo({ width = 120, height = 32, className = "" }: LogoProps) {
+export function ElizaLogo({ width = 120, height = 32, className = "" }: LogoProps) {
   return (
     <div className={clsx(["select-none", className])}>
       <Image

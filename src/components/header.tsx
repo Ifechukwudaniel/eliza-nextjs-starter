@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 import { Dialog } from "@/components/ui/dialog";
 import { DiscordIcon, XIcon } from "@/components/assets";
-import { Logo } from "@/components/assets/ElizaLogo";
+import { ElizaLogo } from "@/components/assets/ElizaLogo";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -80,7 +80,7 @@ export function Header() {
         <div className="flex items-center justify-between py-4">
           <div className="flex">
             <Link href="/" className="-m-1.5 p-1.5">
-              <Logo width={32} height={32} />
+              <ElizaLogo width={32} height={32} />
             </Link>
           </div>
 
@@ -103,7 +103,7 @@ export function Header() {
               className="-m-1.5 p-1.5"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Logo width={32} height={32} />
+              <ElizaLogo width={32} height={32} />
             </Link>
             <button
               type="button"
