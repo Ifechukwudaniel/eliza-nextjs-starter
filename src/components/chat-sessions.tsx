@@ -62,7 +62,7 @@ export const ChatSessions = ({
 
       try {
         const response = await fetch(
-          `/api/chat-sessions?userId=${encodeURIComponent(userId)}`,
+          `/api/chat-sessions?userId=${encodeURIComponent(userId)}`
         );
         const data = await response.json();
 
@@ -74,7 +74,7 @@ export const ChatSessions = ({
       } catch (err) {
         console.error("[ChatSessions] Error:", err);
         setError(
-          err instanceof Error ? err.message : "Failed to load chat sessions",
+          err instanceof Error ? err.message : "Failed to load chat sessions"
         );
       } finally {
         setLoading(false);
@@ -166,8 +166,8 @@ export const ChatSessions = ({
       )}
 
       {!showSwitcher && (
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-4">
-          Previous Conversationss
+        <h3 className="text-xs font-semibold text-zinc-500 mb-4">
+          Previous Conversations
         </h3>
       )}
 

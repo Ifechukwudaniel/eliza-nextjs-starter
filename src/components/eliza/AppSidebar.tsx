@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Suspense } from "react";
 import { useRouter } from "next/navigation";
-import { Plus, ChevronLeft, Menu } from "lucide-react";
+import { SquarePenIcon, PanelLeftIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -25,11 +25,7 @@ const AppSidebar = () => {
           onClick={() => setIsExpanded(!isExpanded)}
           outline
         >
-          {isExpanded ? (
-            <ChevronLeft className="h-4 w-4" />
-          ) : (
-            <Menu className="h-4 w-4" />
-          )}
+          <PanelLeftIcon className="h-4 w-4" />
         </Button>
       </div>
 
@@ -37,10 +33,10 @@ const AppSidebar = () => {
         <ScrollArea className="flex-1 px-2 mt-4">
           <Button
             outline
-            className="w-full justify-start my-2"
+            className="w-full justify-start my-2 font-base border-none"
             onClick={() => router.push("/")}
           >
-            <Plus className="w-4 h-4 mr-2" />
+            <SquarePenIcon className="w-4 h-4 mr-2" />
             New Chat
           </Button>
 
