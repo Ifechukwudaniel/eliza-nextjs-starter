@@ -5,19 +5,19 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
 
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/UseMobile";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/Eliza/ui/seperator";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@/components/Eliza/ui/sheet";
+import { Skeleton } from "@/components/Eliza/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
