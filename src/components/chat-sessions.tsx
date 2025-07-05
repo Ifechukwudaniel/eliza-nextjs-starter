@@ -167,7 +167,7 @@ export const ChatSessions = ({
 
       {!showSwitcher && (
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-4">
-          Previous Conversations
+          Previous Conversationss
         </h3>
       )}
 
