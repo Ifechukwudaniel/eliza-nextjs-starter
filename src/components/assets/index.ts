@@ -1,3 +1,3 @@
-export * from "./x-icon";
-export * from "./telegram-icon";
-export * from "./discord-icon";
+export * from "./XIcon";
+export * from "./TelegramIcon";
+export * from "./DiscordIcon";
