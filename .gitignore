@@ -60,3 +60,4 @@ cache/
 ./data/
 ./models/
 elizaos/
+package-lock.json
