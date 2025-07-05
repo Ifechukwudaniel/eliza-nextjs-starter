@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import { ExamplePrompts } from "@/components/example-prompts";
 
 export const LandingTextarea = () => {
@@ -35,7 +35,7 @@ export const LandingTextarea = () => {
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setInput(e.target.value);
     },
-    [],
+    []
   );
 
   const createNewSession = useCallback(
@@ -48,7 +48,7 @@ export const LandingTextarea = () => {
       try {
         setIsLoading(true);
         console.log(
-          `[Landing] Creating new session with message: "${initialMessage}"`,
+          `[Landing] Creating new session with message: "${initialMessage}"`
         );
 
         const response = await fetch("/api/chat-session/create", {
@@ -78,7 +78,7 @@ export const LandingTextarea = () => {
         setIsLoading(false);
       }
     },
-    [userEntity, push],
+    [userEntity, push]
   );
 
   const handleSubmit = useCallback(
@@ -97,7 +97,7 @@ export const LandingTextarea = () => {
         setIsLoading(false);
       }
     },
-    [input, userEntity, createNewSession],
+    [input, userEntity, createNewSession]
   );
 
   const handlePromptSelect = useCallback(
@@ -106,7 +106,7 @@ export const LandingTextarea = () => {
         createNewSession(prompt);
       }
     },
-    [userEntity, createNewSession],
+    [userEntity, createNewSession]
   );
 
   return (

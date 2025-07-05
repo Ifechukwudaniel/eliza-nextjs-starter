@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { Dialog } from "@/components/dialog";
+import { Dialog } from "@/components/ui/dialog";
 import { DiscordIcon, XIcon } from "@/components/assets";
 import { Logo } from "@/components/assets/ElizaLogo";
 
