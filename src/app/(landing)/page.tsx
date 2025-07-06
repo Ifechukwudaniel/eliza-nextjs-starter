@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import { Footer } from "@/components/footer";
-import { LandingTextarea } from "@/components/landing-textarea";
+import { Footer } from "@/components/Footer";
+import { LandingTextarea } from "@/components/eliza/LandingTextArea";
 
 import AppSidebar from "@/components/eliza/AppSidebar";
 

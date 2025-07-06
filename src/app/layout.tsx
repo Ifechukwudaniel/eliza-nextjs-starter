@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 
-import { siteConfig } from "@/app/constants";
-import { inter } from "@/app/fonts";
-import "@/app/globals.css";
-import { ProgressBar } from "@/app/progress-bar";
-import { Toaster } from "@/app/toaster";
-import { Header } from "@/components/header";
+import { inter } from "@/config/fonts";
+import "@/styles/globals.css";
+import { ProgressBar } from "@/components/ProgressBar";
+import { Toaster } from "@/components/Toaster";
+import { Header } from "@/components/Header";
+import { siteConfig } from "@/config/site";
 
 export const viewport: Viewport = {
   width: "device-width",
