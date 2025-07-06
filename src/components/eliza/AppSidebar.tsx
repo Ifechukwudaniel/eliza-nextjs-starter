@@ -16,7 +16,7 @@ const AppSidebar = () => {
   const isMobile = useIsMobile();
 
   const SidebarContent = (
-    <div className="flex flex-col h-fullborder-r border-[#ffffff20] w-80 z-50">
+    <div className="flex flex-col h-fullborder-r border-[#ffffff20] w-90 z-50">
       <ScrollArea className="flex-1 px-2 mt-4">
         <Button
           outline
@@ -41,7 +41,7 @@ const AppSidebar = () => {
       {!isMobile && (
         <div
           className={`transition-all duration-300 overflow-hidden bg-black border-r border-[#ffffff20] overflow-y-auto z-50 ${
-            isExpanded ? "w-80" : "w-14"
+            isExpanded ? "w-90" : "w-14"
           }`}
         >
           <div className="p-2 flex justify-between">
