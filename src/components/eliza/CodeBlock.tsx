@@ -16,7 +16,7 @@ import { EditorView } from "codemirror";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { basicSetup } from "@/components/basic-setup";
+import { basicSetup } from "@/components/eliza/BasicSetup";
 
 export function CodeBlock({ className, children }) {
   const [copySuccess, setCopySuccess] = useState("");

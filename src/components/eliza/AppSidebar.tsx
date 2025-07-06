@@ -6,7 +6,7 @@ import { SquarePenIcon, PanelLeftIcon, PanelRightIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { LandingChatSessions } from "@/components/landing-chat-sessions";
+import { LandingChatSessions } from "@/components/eliza/LandingChatSessions";
 import { ElizaLogo } from "@/components/assets";
 import { useIsMobile } from "@/hooks/useMobile";
 
@@ -73,7 +73,7 @@ const AppSidebar = () => {
         </div>
       )}
 
-      {/* Mobile Toggle Button */}
+      {/* 📱 Mobile Toggle Button */}
       {isMobile && (
         <div className="fixed top-4 left-4 z-50">
           <Button

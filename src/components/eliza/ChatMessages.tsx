@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-import { ChatMessage } from "@/components/chat-message";
+import { ChatMessage } from "@/components/eliza/ChatMessage";
 import { USER_NAME } from "@/constants";
 import { Citation } from "@/types/chat";
 import { ChatMessage as ChatMessageType } from "@/types/chat-message";
@@ -23,19 +23,19 @@ export function ChatMessages({
 }: ChatMessagesProps) {
   assert(
     Array.isArray(messages),
-    `[ChatMessages] 'messages' prop is not an array: ${typeof messages}`,
+    `[ChatMessages] 'messages' prop is not an array: ${typeof messages}`
   );
   assert(
     typeof citationsMap === "object" && citationsMap !== null,
-    `[ChatMessages] 'citationsMap' prop is not an object: ${typeof citationsMap}`,
+    `[ChatMessages] 'citationsMap' prop is not an object: ${typeof citationsMap}`
   );
   assert(
     typeof followUpPromptsMap === "object" && followUpPromptsMap !== null,
-    `[ChatMessages] 'followUpPromptsMap' prop is not an object: ${typeof followUpPromptsMap}`,
+    `[ChatMessages] 'followUpPromptsMap' prop is not an object: ${typeof followUpPromptsMap}`
   );
   assert(
     typeof onFollowUpClick === "function",
-    `[ChatMessages] 'onFollowUpClick' prop is not a function: ${typeof onFollowUpClick}`,
+    `[ChatMessages] 'onFollowUpClick' prop is not a function: ${typeof onFollowUpClick}`
   );
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -60,14 +60,14 @@ export function ChatMessages({
     const lastMessage = messages[messages.length - 1];
     assert(
       lastMessage && typeof lastMessage === "object",
-      `[ChatMessages Effect 1] Invalid lastMessage (index ${messages.length - 1})`,
+      `[ChatMessages Effect 1] Invalid lastMessage (index ${messages.length - 1})`
     );
     if (!lastMessage) return;
     assert(
       typeof lastMessage.text === "string" ||
         lastMessage.text === null ||
         lastMessage.text === undefined,
-      `[ChatMessages Effect 1] Invalid lastMessage.text (index ${messages.length - 1}): ${typeof lastMessage.text}`,
+      `[ChatMessages Effect 1] Invalid lastMessage.text (index ${messages.length - 1}): ${typeof lastMessage.text}`
     );
 
     const currentText = lastMessage.text ?? "";
@@ -84,18 +84,18 @@ export function ChatMessages({
     const lastMessage = messages[messages.length - 1];
     assert(
       lastMessage && typeof lastMessage === "object",
-      `[ChatMessages Effect 2] Invalid lastMessage (index ${messages.length - 1})`,
+      `[ChatMessages Effect 2] Invalid lastMessage (index ${messages.length - 1})`
     );
     if (!lastMessage) return;
     assert(
       typeof lastMessage.name === "string",
-      `[ChatMessages Effect 2] Invalid lastMessage.name (index ${messages.length - 1}): ${typeof lastMessage.name}`,
+      `[ChatMessages Effect 2] Invalid lastMessage.name (index ${messages.length - 1}): ${typeof lastMessage.name}`
     );
     assert(
       typeof lastMessage.text === "string" ||
         lastMessage.text === null ||
         lastMessage.text === undefined,
-      `[ChatMessages Effect 2] Invalid lastMessage.text (index ${messages.length - 1}): ${typeof lastMessage.text}`,
+      `[ChatMessages Effect 2] Invalid lastMessage.text (index ${messages.length - 1}): ${typeof lastMessage.text}`
     );
 
     if (lastMessage.name !== USER_NAME) {
@@ -129,17 +129,17 @@ export function ChatMessages({
       {messages.map((message, i) => {
         assert(
           message && typeof message === "object",
-          `[ChatMessages Map] Invalid message at index ${i}`,
+          `[ChatMessages Map] Invalid message at index ${i}`
         );
         if (!message) return null;
         const messageKey = message.id || message.createdAt;
         assert(
           messageKey,
-          `[ChatMessages Map] Message at index ${i} lacks id and createdAt for key.`,
+          `[ChatMessages Map] Message at index ${i} lacks id and createdAt for key.`
         );
         assert(
           typeof message.name === "string",
-          `[ChatMessages Map] Invalid message.name at index ${i}: ${typeof message.name}`,
+          `[ChatMessages Map] Invalid message.name at index ${i}: ${typeof message.name}`
         );
 
         const assistantIndex =

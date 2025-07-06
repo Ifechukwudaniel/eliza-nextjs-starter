@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { Button } from "@/components/ui/button";
-import { ExamplePrompts } from "@/components/example-prompts";
+import { ExamplePrompts } from "@/components/eliza/ExamplePrompts";
 
 export const LandingTextarea = () => {
   const [input, setInput] = useState("");

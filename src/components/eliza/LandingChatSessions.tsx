@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ChatSessions } from "@/components/chat-sessions";
+import { ChatSessions } from "@/components/eliza/ChatSessions";
 
 export const LandingChatSessions = () => {
   const [userEntity, setUserEntity] = useState<string | null>(null);

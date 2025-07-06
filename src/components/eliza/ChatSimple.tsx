@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { ChatMessages } from "@/components/chat-messages";
-import { TextareaWithActions } from "@/components/textarea-with-actions";
-import { ChatSessions } from "@/components/chat-sessions";
+import { ChatMessages } from "@/components/eliza/ChatMessages";
+import { TextareaWithActions } from "@/components/eliza/TextAreaWithActions";
+import { ChatSessions } from "@/components/eliza/ChatSessions";
 import { Button, styles } from "@/components/ui/button";
 import { USER_NAME, CHAT_SOURCE } from "@/constants";
 import SocketIOManager, {
@@ -19,7 +19,7 @@ import {
   getRoomMemories,
   pingServer,
 } from "@/lib/api-client";
-import { DebugPanel } from "./eliza/DebugPanel";
+import { DebugPanel } from "./DebugPanel";
 
 // Simple spinner component
 const LoadingSpinner = () => (

@@ -7,8 +7,8 @@ import {
 import clsx from "clsx";
 import { memo, useState } from "react";
 
-import { CodeBlock } from "@/components/code-block";
-import { MemoizedMarkdown } from "@/components/memoized-markdown";
+import { CodeBlock } from "@/components/eliza/CodeBlock";
+import { MemoizedMarkdown } from "@/components/eliza/MemomizedMarkdown";
 import { Citation } from "@/types/chat";
 import { ChatMessage as ChatMessageType } from "@/types/chat-message";
 import { assert } from "@/utils/assert";
