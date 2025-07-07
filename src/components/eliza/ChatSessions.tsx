@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { formatTimeAgo } from "@/lib/time";
 import { useChatSessions } from "@/hooks/useChatSessions";
+import {ChevronRight} from "lucide-react";
 
 interface ChatSessionsProps {
   userId: string | null;
@@ -131,19 +132,7 @@ const SessionCard = ({
       </div>
 
       <div className="flex-shrink-0">
-        <svg
-          className="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
+        <ChevronRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors" />
       </div>
     </div>
   </div>
