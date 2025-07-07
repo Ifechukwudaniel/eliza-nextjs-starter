@@ -16,7 +16,7 @@ const AppSidebar = () => {
   const isMobile = useIsMobile();
 
   const SidebarContent = (
-    <div className="flex flex-col h-fullborder-r border-[#ffffff20] w-80 z-50">
+    <div className="flex flex-col h-full border-r border-[#ffffff20] w-80 z-50">
       <div>
       <Button
           outline
