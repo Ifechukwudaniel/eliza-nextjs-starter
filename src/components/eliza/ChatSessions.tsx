@@ -73,7 +73,7 @@ export const ChatSessions = ({
       >
         {showSwitcher
           ? "Switch to another conversation:"
-          : "Previous Conversations"}
+          : "Chats"}
       </h3>
 
       <div className="space-y-2">

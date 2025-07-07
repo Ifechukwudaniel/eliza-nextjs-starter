@@ -11,7 +11,7 @@ import { ElizaLogo } from "@/components/assets";
 import { useIsMobile } from "@/hooks/useMobile";
 
 const AppSidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const router = useRouter();
   const isMobile = useIsMobile();
 
