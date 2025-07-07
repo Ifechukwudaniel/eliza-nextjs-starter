@@ -16,9 +16,9 @@ const AppSidebar = () => {
   const isMobile = useIsMobile();
 
   const SidebarContent = (
-    <div className="flex flex-col h-fullborder-r border-[#ffffff20] w-90 z-50">
-      <ScrollArea className="flex-1 px-2 mt-4">
-        <Button
+    <div className="flex flex-col h-fullborder-r border-[#ffffff20] w-80 z-50">
+      <div>
+      <Button
           outline
           className="w-full justify-start my-2 font-base border-none"
           onClick={() => router.push("/")}
@@ -26,7 +26,9 @@ const AppSidebar = () => {
           <SquarePenIcon className="w-4 h-4 mr-2" />
           New Chat
         </Button>
+      </div>
 
+      <ScrollArea className="flex-1 px-2 mt-4">
         <div className="mt-4 space-y-2">
           <Suspense fallback={<div className="text-sm p-2">Loading...</div>}>
             <LandingChatSessions />
