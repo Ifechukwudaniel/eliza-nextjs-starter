@@ -118,10 +118,12 @@ export const ChatMessage = memo(function ChatMessage({
     [] as (Citation & { index: number })[]
   );
 
-  console.log("message", message);
-  console.log("message.name:", message.name);
-  console.log("USER_NAME:", USER_NAME);
-  console.log("Equal?:", message.name === USER_NAME);
+  if (process.env.NODE_ENV === "development") {
+    console.log("message", message);
+    console.log("message.name:", message.name);
+    console.log("USER_NAME:", USER_NAME);
+    console.log("Equal?:", message.name === USER_NAME);
+  }
 
   return (
     <div
