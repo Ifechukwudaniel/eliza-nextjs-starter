@@ -43,7 +43,7 @@ const AppSidebar = () => {
       {!isMobile && (
         <div
           className={`transition-all duration-300 overflow-hidden bg-black border-r border-[#ffffff20] overflow-y-auto z-50 ${
-            isExpanded ? "w-90" : "w-14"
+            isExpanded ? "w-80" : "w-14"
           }`}
         >
           <div className="p-2 flex justify-between">
