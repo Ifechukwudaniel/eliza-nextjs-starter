@@ -1,41 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
-// Simple spinner component
-const LoadingSpinner = () => (
-  <svg
-    className="animate-spin h-4 w-4 text-zinc-600 dark:text-zinc-400"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-  >
-    <circle
-      className="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    ></circle>
-    <path
-      className="opacity-75"
-      fill="currentColor"
-      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-    ></path>
-  </svg>
-);
-
-interface ChatSession {
-  id: string;
-  title: string;
-  messageCount: number;
-  lastActivity: string;
-  preview: string;
-  isFromAgent: boolean;
-  channelId?: string;
-}
+import { LoadingSpinner } from "../LoadingSpinner";
+import { formatTimeAgo } from "@/lib/time";
+import { useChatSessions } from "@/hooks/useChatSessions";
 
 interface ChatSessionsProps {
   userId: string | null;
@@ -48,61 +16,12 @@ export const ChatSessions = ({
   currentSessionId,
   showSwitcher = false,
 }: ChatSessionsProps) => {
-  const [sessions, setSessions] = useState<ChatSession[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const { sessions, loading, error } = useChatSessions(userId);
 
-  useEffect(() => {
-    if (!userId) return;
-
-    const fetchSessions = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(
-          `/api/chat-sessions?userId=${encodeURIComponent(userId)}`
-        );
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || "Failed to fetch chat sessions");
-        }
-
-        setSessions(data.data?.sessions || []);
-      } catch (err) {
-        console.error("[ChatSessions] Error:", err);
-        setError(
-          err instanceof Error ? err.message : "Failed to load chat sessions"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSessions();
-  }, [userId]);
-
-  const handleSessionClick = (session: ChatSession) => {
-    // Navigate to the chat session page
-    router.push(`/chat/${session.id}`);
-  };
-
-  const formatTimeAgo = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffMins = Math.floor(diffMs / (1000 * 60));
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-    if (diffMins < 1) return "Just now";
-    if (diffMins < 60) return `${diffMins}m ago`;
-    if (diffHours < 24) return `${diffHours}h ago`;
-    if (diffDays < 7) return `${diffDays}d ago`;
-    return date.toLocaleDateString();
-  };
+  const filteredSessions = showSwitcher
+    ? sessions.filter((s) => s.id !== currentSessionId)
+    : sessions;
 
   if (!userId) {
     return null;
@@ -131,7 +50,7 @@ export const ChatSessions = ({
     );
   }
 
-  if (sessions.length === 0) {
+  if (filteredSessions.length === 0) {
     return (
       <div className="text-center py-8">
         <p className="text-zinc-500 dark:text-zinc-400 text-sm">
@@ -143,82 +62,89 @@ export const ChatSessions = ({
     );
   }
 
-  const filteredSessions = showSwitcher
-    ? sessions.filter((s) => s.id !== currentSessionId)
-    : sessions;
-
-  if (showSwitcher && filteredSessions.length === 0) {
-    return (
-      <div className="text-center py-4">
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-          No other chat sessions found
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-3">
-      {showSwitcher && (
-        <h3 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-3">
-          Switch to another conversation:
-        </h3>
-      )}
-
-      {!showSwitcher && (
-        <h3 className="text-xs font-semibold text-zinc-500 mb-4">
-          Previous Conversations
-        </h3>
-      )}
+      <h3
+        className={
+          showSwitcher
+            ? "text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-3"
+            : "text-xs font-semibold text-zinc-500 mb-4"
+        }
+      >
+        {showSwitcher
+          ? "Switch to another conversation:"
+          : "Previous Conversations"}
+      </h3>
 
       <div className="space-y-2">
         {filteredSessions.map((session) => (
-          <div
+          <SessionCard
             key={session.id}
-            onClick={() => handleSessionClick(session)}
-            className="group cursor-pointer bg-white dark:bg-zinc-950 border border-zinc-950/10 dark:border-white/10 rounded-lg p-4 hover:bg-zinc-950/[2.5%] dark:hover:bg-white/[2.5%] transition-all duration-200"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex-1 min-w-0">
-                <h4 className="font-medium text-zinc-900 dark:text-white text-sm group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors line-clamp-1">
-                  {session.title}
-                </h4>
-                {session.preview && (
-                  <p className="text-zinc-600 dark:text-zinc-400 text-xs mt-1 line-clamp-2">
-                    {session.isFromAgent ? "🤖 " : ""}
-                    {session.preview}
-                  </p>
-                )}
-                <div className="flex items-center gap-3 mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  <span>
-                    {session.messageCount} message
-                    {session.messageCount !== 1 ? "s" : ""}
-                  </span>
-                  <span>•</span>
-                  <span>{formatTimeAgo(session.lastActivity)}</span>
-                </div>
-              </div>
-              <div className="flex-shrink-0">
-                <svg
-                  className="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
+            session={session}
+            onClick={() => router.push(`/chat/${session.id}`)}
+          />
         ))}
       </div>
     </div>
   );
 };
 
-export default ChatSessions;
+const SessionCard = ({
+  session,
+  onClick,
+}: {
+  session: {
+    id: string;
+    title: string;
+    messageCount: number;
+    lastActivity: string;
+    preview: string;
+    isFromAgent: boolean;
+  };
+  onClick: () => void;
+}) => (
+  <div
+    onClick={onClick}
+    className="group cursor-pointer bg-white dark:bg-zinc-950 border border-zinc-950/10 dark:border-white/10 rounded-lg p-4 hover:bg-zinc-950/[2.5%] dark:hover:bg-white/[2.5%] transition-all duration-200"
+  >
+    <div className="flex items-start justify-between gap-3">
+      <div className="flex-1 min-w-0">
+        <h4 className="font-medium text-zinc-900 dark:text-white text-sm group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors line-clamp-1">
+          {session.title}
+        </h4>
+
+        {session.preview && (
+          <p className="text-zinc-600 dark:text-zinc-400 text-xs mt-1 line-clamp-2">
+            {session.isFromAgent ? "🤖 " : ""}
+            {session.preview}
+          </p>
+        )}
+
+        <div className="flex items-center gap-3 mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+          <span>
+            {session.messageCount} message
+            {session.messageCount !== 1 ? "s" : ""}
+          </span>
+          <span>•</span>
+          <span>{formatTimeAgo(session.lastActivity)}</span>
+        </div>
+      </div>
+
+      <div className="flex-shrink-0">
+        <svg
+          className="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+);

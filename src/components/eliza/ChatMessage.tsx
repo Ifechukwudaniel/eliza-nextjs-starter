@@ -126,7 +126,7 @@ export const ChatMessage = memo(function ChatMessage({
   return (
     <div
       className={clsx(
-        "w-full flex", // make it a flex row so we can control alignment
+        "w-full flex",
         message.name === USER_NAME ? "justify-end" : "justify-start"
       )}
     >

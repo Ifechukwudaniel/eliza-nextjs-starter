@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { ChatMessages } from "@/components/eliza/ChatMessages";
 import { TextareaWithActions } from "@/components/eliza/TextAreaWithActions";
 import { ChatSessions } from "@/components/eliza/ChatSessions";
-import { Button, styles } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { USER_NAME, CHAT_SOURCE } from "@/constants";
 import SocketIOManager, {
   ControlMessageData,
